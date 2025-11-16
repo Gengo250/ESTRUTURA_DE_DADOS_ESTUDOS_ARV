@@ -7,6 +7,7 @@ Repositório feito por **Miguel Gengo** Aluno de Engenharia da Computação - PU
 - PDFs e materiais de apoio sobre **árvores e ABB**
 
 A ideia é simples: deixar tudo que eu usei pra estudar **Estrutura de Dados** em um lugar só e, de quebra, ajudar outros alunos que estão passando pela mesma matéria.
+Use o código como **apoio**, não como muleta
 
 ---
 
@@ -66,32 +67,6 @@ Eles ajudam a conectar a teoria com os códigos deste repositório.
 
 ---
 
-## 🧪 Como usar este repositório pra estudar
-
-Sugestão de uso:
-
-1. **Abra os PDFs de aula** e releia a teoria (conceitos de árvore, ABB, remoção, altura, nível etc.).
-2. Depois, abra os códigos `.c` deste repo e:
-   - Veja como cada função foi implementada
-   - Tente entender o fluxo recursivo da ABB
-   - Faça anotações e comentários no próprio código, se quiser
-3. Compile e rode os programas. Exemplo usando `gcc`:
-
-   ```bash
-   gcc ListaDeABB.c -o lista_abb
-   ./lista_abb
-   ```
-
-4. Teste vários cenários:
-   - Inserções em ordem crescente
-   - Remoções de folha, nó com 1 filho, nó com 2 filhos
-   - Diferentes valores pra buscar e contar
-
-5. Use o código como **apoio**, não como muleta:
-   - Tente implementar você mesmo
-   - Depois compare sua solução com a deste repositório
-
----
 
 ## 🤝 Compartilhamento e contribuições
 
