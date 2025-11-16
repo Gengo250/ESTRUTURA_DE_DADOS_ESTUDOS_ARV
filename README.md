@@ -33,8 +33,6 @@ Nada aqui é “oficial” da faculdade. É um repositório de estudante para es
   - Verificar se está vazia
   - Inserir elemento
   - Buscar elemento
-  - Imprimir (pré, in, pós-ordem)
-  - Remover nós (casos: folha, 1 filho, 2 filhos)
   - Altura da árvore
   - Nível de um nó
   - Contagem de folhas
