@@ -64,6 +64,8 @@ void arvoreEstrBinaria(Arv *a);
 int EstritamenteBinaria(NoArv *raiz);
 void soma_pares_Arv(Arv *a);
 int soma_pares(NoArv *raiz);
+void num_Nos_Arv(Arv *a);
+int numero_de_nos(NoArv *raiz);
 
 
 
@@ -657,6 +659,19 @@ int soma_pares(NoArv *raiz){
   int dir = soma_pares(raiz->direita);
   return esq + dir + soma;
 }
+void num_Nos_Arv(Arv *a){
+  int total = numero_de_nos(a->raiz);
+  printf("Total de nos na arvore: %d", total);
+}
+int numero_de_nos(NoArv *raiz){
+  if(raiz == NULL){
+    return 0;
+  }
+ 
+  int esq = numero_de_nos(raiz->esquerda);
+  int dir = numero_de_nos(raiz->direita);
+  return 1 + esq + dir;
+}
 
 
 
@@ -690,6 +705,7 @@ int main()
     printf("\n21 - Remover Arvore");
     printf("\n22 - Arvore estritamente binaria");
     printf("\n23 - Soma Dos Nos pares");
+    printf("\n24 - Numero de Nos");
     printf("\n");
 
 
@@ -807,6 +823,9 @@ int main()
     break;
     case 23:
       soma_pares_Arv(arv);
+    break;
+    case 24:
+      num_Nos_Arv(arv);
     break;
 
 
