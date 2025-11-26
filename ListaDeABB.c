@@ -66,6 +66,10 @@ void soma_pares_Arv(Arv *a);
 int soma_pares(NoArv *raiz);
 void num_Nos_Arv(Arv *a);
 int numero_de_nos(NoArv *raiz);
+void mult_5_Arv(Arv *a);
+int test_mul_5(NoArv *raiz);
+void Um_Filho(Arv *a);
+int NosUm_Filho(NoArv *raiz);
 
 
 
@@ -672,6 +676,36 @@ int numero_de_nos(NoArv *raiz){
   int dir = numero_de_nos(raiz->direita);
   return 1 + esq + dir;
 }
+void mult_5_Arv(Arv *a){
+  int total = test_mul_5(a->raiz);
+  printf("Soma dos Multiplos de 5 da Arvore: %d", total);
+}
+
+int test_mul_5(NoArv *raiz){
+  if(raiz == NULL){
+    return 0;
+  }
+  int soma = 0;
+  if(raiz->valor % 5 == 0){
+    soma += raiz->valor;
+  }
+  return soma + test_mul_5(raiz->esquerda) + test_mul_5(raiz->direita);
+}
+
+void Um_Filho(Arv *a){
+  int n = NosUm_Filho(a->raiz);
+  printf("Total de Nos com 1 filho: %d", n);
+}
+int NosUm_Filho(NoArv *raiz){
+  if(raiz == NULL){
+    return 0;
+  }
+  int conta = 0;
+  if((raiz->esquerda == NULL && raiz->direita != NULL) || (raiz->esquerda != NULL && raiz->direita == NULL)){
+    conta = 1;
+  }
+  return conta + NosUm_Filho(raiz->esquerda) + NosUm_Filho(raiz->direita);
+}
 
 
 
@@ -706,6 +740,8 @@ int main()
     printf("\n22 - Arvore estritamente binaria");
     printf("\n23 - Soma Dos Nos pares");
     printf("\n24 - Numero de Nos");
+    printf("\n25 - Soma dos multiplos de 5 da Árvore");
+    printf("\n26 - Quantidade de Nos na Árvore com 1 filho");
     printf("\n");
 
 
@@ -826,6 +862,12 @@ int main()
     break;
     case 24:
       num_Nos_Arv(arv);
+    break;
+    case 25:
+      mult_5_Arv(arv);
+    break;
+    case 26:
+      Um_Filho(arv);
     break;
 
 
