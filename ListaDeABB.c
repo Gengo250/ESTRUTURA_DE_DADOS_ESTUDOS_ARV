@@ -70,6 +70,8 @@ void mult_5_Arv(Arv *a);
 int test_mul_5(NoArv *raiz);
 void Um_Filho(Arv *a);
 int NosUm_Filho(NoArv *raiz);
+void somaNosInternosArv(Arv *a);
+int somaNosInternos(NoArv *raiz);
 
 
 
@@ -705,6 +707,24 @@ int NosUm_Filho(NoArv *raiz){
     conta = 1;
   }
   return conta + NosUm_Filho(raiz->esquerda) + NosUm_Filho(raiz->direita);
+}
+
+void somaNosInternosArv(Arv *a) {
+    int soma = somaNosInternos(a->raiz);
+    printf("Soma dos nós internos = %d\n", soma);
+}
+
+int somaNosInternos(NoArv *raiz){
+  if(raiz == NULL){
+    return 0;
+  }
+
+  int soma = 0;
+
+  if(raiz->esquerda != NULL || raiz->direita != NULL){
+    soma += raiz->valor;
+  }
+ return soma + somaNosInternos(raiz->esquerda) + somaNosInternos(raiz->direita);
 }
 
 
