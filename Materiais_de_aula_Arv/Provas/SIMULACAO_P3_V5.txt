@@ -1,0 +1,75 @@
+SIMULADO — Estruturas de Dados (AVL, Hash, Grafos)
+
+Instruções:
+- Use a convenção do fator de balanceamento: FB = Hd − He (direita − esquerda).
+- Na remoção em ABB/AVL, quando necessário, utilize o substituto: MAIOR da subárvore esquerda.
+- Justifique brevemente suas respostas onde for pedido.
+- Escreva seu nome: __________________________  RA: ________________
+
+1) (2,0) AVL — Remoção e rebalanceamento
+Considere a árvore AVL abaixo (ASCII). Remova o elemento 20 e reequilibre a árvore, mostrando os passos essenciais
+(substituição, remoção do predecessor quando aplicável, alturas/FB relevantes e rotações):
+
+          15
+         /  \
+        7    25
+       / \   / \
+      4  10 20  30
+          /\    /
+         8 12  28
+
+Use FB = Hd − He. Aponte claramente onde ocorre cada rotação (se ocorrer).
+Espaço para resposta: ____________________________________________________________
+_________________________________________________________________________________
+_________________________________________________________________________________
+
+2) (1,5) Tabela Hash — Duplo Hashing (sem listas encadeadas)
+Tabela com tamanho N = 13 (índices 0..12), inicialmente vazia.
+Use h1(k) = k mod N  e  h2(k) = 1 + (k mod (N − 1)).
+Para inserir cada chave, use sondagem dupla: i = (h1(k) + t·h2(k)) mod N, com t = 0,1,2,... enquanto colidir.
+Sequência: 50, 31, 44, 68, 21, 64, 83, 72, 95, 18.
+Preencha a tabela final e, quando houver colisão, anote o primeiro t usado.
+
+Índice:  00 01 02 03 04 05 06 07 08 09 10 11 12
+Valor :  __ __ __ __ __ __ __ __ __ __ __ __ __
+t(col):  __ __ __ __ __ __ __ __ __ __ __ __ __
+
+Cálculos auxiliares: ______________________________________________________________
+_________________________________________________________________________________
+
+3) (1,0) Grafos — Trilha/Circuito de Euler (justifique)
+Grafo não direcionado com V = {A,B,C,D,E,F,G} e arestas:
+E = { (A,B), (B,C), (C,D), (D,A), (A,E), (E,F), (F,G), (G,A) }.
+(a) Existe circuito euleriano? (b) Existe trilha euleriana?
+Justifique usando os graus dos vértices.
+Resposta: ________________________________________________________________________
+_________________________________________________________________________________
+
+4) (1,0) Grafos — Bipartição
+Diga se os grafos abaixo são bipartidos. Se não forem, exiba um ciclo ímpar que comprove.
+(a) C6 (ciclo com 6 vértices).  (b) Grafo com arestas: {(1,2),(2,3),(3,1),(3,4)}.
+Resposta: ________________________________________________________________________
+_________________________________________________________________________________
+
+5) (1,0) Árvores — Múltiplos de 7 em nível (BFS)
+Implemente (em alto nível) o procedimento enfileiraMultiplosDe7(A,F) que percorre a árvore binária por nível (BFS) e
+insere na fila F apenas os valores múltiplos de 7, na mesma ordem do percurso. A função deve retornar o total enfileirado.
+Explique a complexidade em função de n.
+Resposta: ________________________________________________________________________
+_________________________________________________________________________________
+
+6) (2,0) ABB — Nós com exatamente um filho (solução eficiente)
+Numa ABB, elabore um método que conte quantos nós possuem exatamente um filho.
+Apresente a ideia do algoritmo (sem percursos redundantes) e comente por que é O(n).
+Resposta: ________________________________________________________________________
+_________________________________________________________________________________
+
+7) (1,5) Dígrafos — Fontes e Sumidouros (matriz 15×15)
+Escreva um procedimento void teste(int MA[15][15]) que imprima:
+(a) os vértices fontes (grau de entrada = 0);
+(b) os vértices sumidouros (grau de saída = 0).
+Comente a complexidade.
+Resposta: ________________________________________________________________________
+_________________________________________________________________________________
+
+Fim do simulado.

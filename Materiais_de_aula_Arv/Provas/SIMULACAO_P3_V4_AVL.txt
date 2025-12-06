@@ -1,0 +1,103 @@
+
+SIMULADO — Árvores Balanceadas (AVL) — Somente teoria
+Baseado exclusivamente no arquivo: AULA_11_ARVORES_BALANCEADAS.pdf
+
+Convenções do material:
+- Fator de balanceamento (FB): FB(n) = Hd – He (direita menos esquerda).
+- Em AVL, cada nó deve ter FB ∈ {–1, 0, +1}.
+- Rebalanceamento dinâmico (após inserções/remoções) por rotações; se FB=+2, tende à rotação à esquerda; se FB=–2, tende à rotação à direita.
+- Rotação simples quando pai e filho têm mesmo sinal; rotação dupla quando têm sinais opostos.
+- Altura de folha = 0; de nó vazio = –1.
+
+------------------------------------------------------------
+Q1 — Três inserções, três árvores
+------------------------------------------------------------
+Considere as sequências de inserção numa ABB vazia:
+1) 40, 50, 60, 70, 20, 30, 80
+2) 50, 30, 70, 20, 40, 60, 80
+3) 20, 30, 40, 50, 60, 70, 80
+(a) Desenhe as três árvores resultantes (como ABBs, sem rebalancear).
+(b) Elas ficam iguais? Justifique pela ordem de inserção.
+(c) Em qual das três a busca tende a ser mais eficiente? Explique com base em altura/desbalanceamento.
+
+------------------------------------------------------------
+Q2 — Definição e diagnóstico de AVL
+------------------------------------------------------------
+(a) Dê a definição de uma árvore de busca AVL.
+(b) Explique o significado de FB(n) = 0, FB(n) > 0 e FB(n) < 0.
+(c) Mostre um exemplo curto (desenho) de ABB que não é AVL indicando ao menos um nó cujo |FB| ≥ 2.
+
+------------------------------------------------------------
+Q3 — FB por nó e veredito
+------------------------------------------------------------
+Desenhe uma ABB com dois níveis à esquerda e dois à direita da raiz.
+- Calcule Hd e He de cada nó e marque o FB em cada um.
+- A árvore é AVL? Se não for, aponte quais nós violam a condição e por quê.
+
+(Dica: altura de uma folha = 0; de nó vazio = –1.)
+
+------------------------------------------------------------
+Q4 — Onde posso inserir sem perder AVL?
+------------------------------------------------------------
+Dada uma árvore AVL (desenhe um exemplo simples com 7 nós):
+- Indique todas as posições onde você pode inserir um novo valor mantendo a árvore ainda AVL sem precisar rotacionar.
+- Justifique usando a variação de altura esperada após a inserção e o impacto nos FBs no caminho até a raiz.
+
+------------------------------------------------------------
+Q5 — Dinâmico × Global (estático)
+------------------------------------------------------------
+Explique a diferença entre balanceamento dinâmico e balanceamento global (estático).
+- Quando o dinâmico entra em ação?
+- O que seria um rebalanceamento global e quando faria sentido?
+- Qual abordagem é adotada nas aulas para AVL e por quê?
+
+------------------------------------------------------------
+Q6 — Identificando a rotação a partir dos sinais
+------------------------------------------------------------
+Em cada cenário, nomeie a rotação necessária (sem desenhar o passo a passo; apenas identifique o tipo):
+(a) Pai com FB = +2 e filho direito com FB = +1.
+(b) Pai com FB = –2 e filho esquerdo com FB = –1.
+(c) Pai com FB = +2 e filho direito com FB = –1.
+(d) Pai com FB = –2 e filho esquerdo com FB = +1.
+(Dica: mesmo sinal → rotação simples; sinal oposto → rotação dupla. FB positivo = direita mais alta.)
+
+------------------------------------------------------------
+Q7 — Preservação da propriedade de busca
+------------------------------------------------------------
+Mostre por que as rotações usadas no rebalanceamento não alteram a ordem em-ordem da árvore.
+- Explique conceitualmente por que, após rotacionar, a árvore continua sendo uma ABB.
+- Dê um microexemplo simbólico (sem números específicos, só rótulos A, B, C, …).
+
+------------------------------------------------------------
+Q8 — “Faça você”: diagnóstico rápido
+------------------------------------------------------------
+Analise duas árvores (desenhe exemplos com ~8–9 nós cada):
+- Na primeira, um nó tem FB = –2 com filho FB = –1.
+- Na segunda, um nó tem FB = –2 com filho FB = +1.
+Para cada caso:
+1) Diga se a árvore é AVL.
+2) Indique a rotação necessária (nome).
+3) Aponte o nó onde a rotação deve ser aplicada.
+
+------------------------------------------------------------
+Q9 — Inserindo e acompanhando FB
+------------------------------------------------------------
+Partindo de uma árvore AVL vazia, insira passo a passo: 50, 30, 70, 60, 80, 90.
+(a) Após cada inserção, indique apenas os FBs dos nós no caminho da nova chave até a raiz.
+(b) Em quais inserções ocorre desbalanceamento (|FB|=2)?
+(c) Nomeie a rotação feita em cada ocorrência e diga qual nó gira.
+
+------------------------------------------------------------
+Q10 — Dois casos clássicos de rotação dupla
+------------------------------------------------------------
+Explique, conceitualmente, quando ocorrem as rotações duplas:
+- Direita–Esquerda (D–E)
+- Esquerda–Direita (E–D)
+Para cada uma:
+(a) Quais sinais de FB (do pai e do filho) levam a esse caso?
+(b) Descreva, em uma frase, a ordem das rotações e o porquê dessa ordem.
+(c) Comente o efeito sobre as alturas locais após a correção.
+
+------------------------------------------------------------
+FIM
+------------------------------------------------------------

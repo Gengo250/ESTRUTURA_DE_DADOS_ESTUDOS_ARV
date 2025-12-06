@@ -762,6 +762,7 @@ int main()
     printf("\n24 - Numero de Nos");
     printf("\n25 - Soma dos multiplos de 5 da Árvore");
     printf("\n26 - Quantidade de Nos na Árvore com 1 filho");
+    printf("\n27 -Soma dos Nos internos da Árvore");
     printf("\n");
 
 
@@ -888,6 +889,9 @@ int main()
     break;
     case 26:
       Um_Filho(arv);
+    break;
+    case 27:
+      somaNosInternosArv(arv);
     break;
 
 

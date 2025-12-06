@@ -1,0 +1,142 @@
+
+---
+
+# Trecho de biblioteca de apoio (para uso nas questões)
+
+As estruturas e cabeçalhos abaixo seguem o padrão visto em aula: nó com `info/esq/dir` e uma estrutura “árvore” que guarda o ponteiro para a raiz. (Estruturas `NoArv` e `Arv` como nos slides de introdução; funções básicas: criar, vazia, buscar, inserir, imprimir, liberar, remover.   )
+
+```c
+// ----- arvore_abb.h -----
+#ifndef ARVORE_ABB_H
+#define ARVORE_ABB_H
+
+typedef struct NoArvore {
+    int info;
+    struct NoArvore *esq, *dir;
+} NoArv;
+
+typedef struct Arvore {
+    NoArv *raiz;
+} Arv;
+
+// Criação / estado
+Arv*   criar(void);        // aloca Arv e zera raiz
+int    arv_vazia(Arv *A);  // retorna 1 se A==NULL ou A->raiz==NULL
+
+// Busca e percursos
+NoArv* buscar_rec(NoArv *r, int chave);   // recursiva
+NoArv* buscar_it(NoArv *r, int chave);    // iterativa
+void   imprimir_in(NoArv *r);             // in-ordem
+void   imprimir_pre(NoArv *r);            // pré-ordem
+void   imprimir_pos(NoArv *r);            // pós-ordem
+
+// Inserção (não aceitar elementos repetidos)
+Arv*   inserir(Arv *A, int x); // manter lei de formação, sem duplicatas
+
+// Remoção (3 casos; caso 3: substituir pelo MAIOR da subárvore esquerda)
+Arv*   remover(Arv *A, int x);
+
+// Utilitárias para exercícios
+int    altura(NoArv *r);
+int    folhas(NoArv *r);
+int    soma_pares(NoArv *r);
+int    nivel_de(NoArv *r, int chave);              // nível do nó, se existir
+int    maiores_que_k(NoArv *r, int k);             // contagem > k
+int    descendentes_de(NoArv *r, int chave);       // se existir
+void   liberar(Arv *A);
+
+#endif
+```
+
+> Referências do trecho: estrutura do nó e da árvore (typedefs) e funções básicas, conforme aulas; percursos pré/in/pos; e regra de remoção com “maior da subárvore esquerda” para o caso 3.      
+
+---
+
+# PROVA — Árvores Binárias de Busca (ABB)
+
+**Instruções:**
+
+* Use o trecho de biblioteca de apoio acima.
+* Quando solicitado “desenhe”, você pode representar a árvore com esquemas ASCII ou indicando (pai → {esq,dir}).
+* Justifique brevemente suas escolhas de caso na remoção.
+* Valor total: 10,0.
+
+---
+
+## Q1 (Código – Inserção sem repetidos) — 1,8 pt
+
+Implemente `inserir(Arv *A, int x)` de forma recursiva, garantindo a **não inserção de duplicatas**. A função deve manter a lei de formação da ABB e retornar `A` atualizado. (Baseie-se nos cabeçalhos e na orientação “modifique inserir para não permitir elementos repetidos”.) 
+
+**Teste:** considere a sequência de inserções: `12, 9, 15, 16, 8, 10`. Ao final, escreva a **impressão em-ordem** (use `imprimir_in`) do resultado. (Percursos conforme os slides.) 
+
+---
+
+## Q2 (Código – Busca iterativa) — 1,5 pt
+
+Implemente `buscar_it(NoArv *r, int chave)` **iterativa** que retorna o ponteiro para o nó com `chave`, ou `NULL` se não existir. Em seguida, diga a complexidade de tempo **no pior caso** em função da altura `h` da árvore. (Funções básicas incluem busca; há também exemplo de pseudocódigo iterativo para inserção que pode inspirar a lógica de laço.)  
+
+---
+
+## Q3 (Código – Remoção com 3 casos) — 2,4 pt
+
+(a) Implemente `remover(Arv *A, int x)` tratando os **três casos**:
+
+1. nó folha; 2) nó com **um** filho; 3) nó com **dois** filhos (no caso 3, **substitua pelo **maior** da subárvore esquerda** e depois remova o nó substituído).   
+
+(b) **Demonstração:** construa a ABB a partir de `5, 9, 7, 4, 12, 15, 11`, e então aplique `remover(9)`. Desenhe a árvore **antes** e **depois** da remoção. (Sequência e exercício conforme a aula de remoção.) 
+
+---
+
+## Q4 (Código – Funções derivadas) — 1,8 pt
+
+Implemente **duas** das funções abaixo (à sua escolha), usando recursão quando apropriado:
+
+* `int folhas(NoArv *r);` — retorna a quantidade de folhas.
+* `int soma_pares(NoArv *r);` — retorna a soma dos nós com valor par.
+* `int nivel_de(NoArv *r, int chave);` — retorna o nível do nó com a chave (raiz tem nível 0; se não existir, retorne -1).
+* `int descendentes_de(NoArv *r, int chave);` — retorna a quantidade de descendentes, caso a chave exista.
+
+(Diretrizes e sugestões dessas funções aparecem nas listas/aulas práticas.)    
+
+---
+
+## Q5 (Desenho – Percursos) — 1,2 pt
+
+Considere a árvore abaixo (conteúdo = inteiros):
+
+```
+            12
+           /  \
+          9    15
+         / \     \
+        8  10     16
+```
+
+(a) Escreva as sequências de visita **pré-ordem**, **em-ordem** e **pós-ordem**.
+(b) Explique, em uma frase por percurso, a ordem em que a raiz e as subárvores são visitadas. (Use as definições de percursos da aula.)   
+
+---
+
+## Q6 (Desenho – Sequência de remoções) — 1,3 pt
+
+Partindo da ABB construída pelas inserções `30, 14, 41, 8, 18, 45, 38, 43`:
+
+1. Desenhe a árvore inicial.
+2. Remova, **nesta ordem**, os elementos: `14`, `8`, `41`, `45`.
+3. Após **cada remoção**, desenhe a nova árvore.
+4. Indique em qual dos **três casos** cada remoção se enquadrou e, quando for o caso 3, qual foi o **substituto** escolhido (de acordo com a estratégia do **maior da subárvore esquerda**).
+
+(A ideia de exercícios com sequências de remoção vem da lista/aula; use a regra de substituição adotada em aula.)  
+
+---
+
+## Critérios de correção (resumo)
+
+* **Q1**: correção da inserção sem duplicatas; preservação da ABB; in-ordem correta.
+* **Q2**: laço iterativo correto; retorno do ponteiro; pior caso `O(h)`.
+* **Q3**: tratamento explícito dos 3 casos; caso 3 com substituição correta; desenho coerente com a regra.
+* **Q4**: recursão bem aplicada; casos-base adequados; resultados corretos.
+* **Q5**: sequências de percurso corretas e coerentes com as definições.
+* **Q6**: desenhos passo a passo corretos; identificação dos casos de remoção e do elemento substituto.
+
+Se quiser, eu já gero um **gabarito comentado** para você — com esquemas ASCII dos desenhos e trechos de código mínimos que passam em testes rápidos. Quer?

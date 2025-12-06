@@ -1,0 +1,122 @@
+
+PROVA – Árvores Binárias de Busca (ABB) — 10 questões
+Autor: (preencha seu nome)
+Instruções gerais:
+• Use os cabeçalhos e estruturas abaixo (pode adaptar nomes se preferir).
+• Quando a questão pedir “desenhe”, use ASCII ou setas pai -> {esq,dir}.
+• Considerar raiz no nível 0 e altura em arestas (árvore vazia = -1).
+• NÃO usar a função de remoção de 3 casos nesta prova.
+
+------------------------------------------------------------
+BIBLIOTECA DE APOIO (trechos sugeridos)
+------------------------------------------------------------
+/* arvore_abb.h (trecho) */
+#ifndef ARVORE_ABB_H
+#define ARVORE_ABB_H
+
+typedef struct NoArvore {
+    int info;
+    struct NoArvore *esq, *dir;
+} NoArv;
+
+typedef struct Arvore {
+    NoArv *raiz;
+} Arv;
+
+/* criação/estado */
+Arv*  criar(void);                 /* aloca Arv e zera raiz */
+int   arv_vazia(Arv *A);           /* 1 se A==NULL ou A->raiz==NULL */
+
+/* busca e percursos */
+NoArv* buscar_rec(NoArv *r, int x);
+NoArv* buscar_it(NoArv *r, int x); /* iterativa */
+void   imprimir_pre(NoArv *r);
+void   imprimir_in(NoArv *r);
+void   imprimir_pos(NoArv *r);
+
+/* inserção (não aceitar duplicatas) */
+Arv*  inserir(Arv *A, int x);
+
+/* utilitárias */
+int   altura(NoArv *r);                     /* em arestas; vazia = -1 */
+int   folhas(NoArv *r);
+int   soma_pares(NoArv *r);
+int   nivel_de(NoArv *r, int x);            /* raiz nível 0; -1 se não achar */
+int   descendentes_de(NoArv *r, int x);     /* -1 se não achar */
+int   contar_maiores(NoArv *r, int k);
+int   contar_ate_nivel(NoArv *r, int L);    /* qtos nós até nível L (inclui L) */
+int   nos_subE_de(NoArv *r, int x);         /* nós na subárvore esquerda de x */
+int   pai_de(NoArv *r, int x, int *pai_out);/* 1 se achou; escreve pai */
+int   menor(NoArv *r, int *out);            /* menor elemento (se houver) */
+NoArv* remover_menor(NoArv *r);             /* remove o menor nó */
+NoArv* remover_folhas(NoArv *r);            /* remove todas as folhas */
+void  liberar(Arv *A);
+
+#endif
+
+------------------------------------------------------------
+PROVA – 10 QUESTÕES
+------------------------------------------------------------
+
+Q1 — (Código) Inserção recursiva sem duplicatas (1,0)
+Implemente inserir(Arv *A, int x) de forma recursiva, mantendo a lei de formação da ABB e recusando valores repetidos. Retorne A atualizado.
+Teste: insira em ordem: 12, 9, 15, 16, 8, 10. Imprima em-ordem.
+
+Q2 — (Código) Busca iterativa (1,0)
+Implemente buscar_it(NoArv *r, int x) usando laço (while) e ponteiro de varredura. Retorne o ponteiro para o nó se achar ou NULL se não achar. Informe a complexidade no pior caso em função da altura h.
+
+Q3 — (Código) Percursos em árvore desenhada (1,0)
+Considere a árvore:
+           30
+         /    \
+        18     38
+                \
+                43
+(a) Imprima pré, in e pós (uma linha cada).
+(b) Informe a altura e o número de níveis.
+
+Q4 — (Construção) Árvore de expressão aritmética (1,2)
+Monte a árvore binária de expressão e escreva as formas prefixa, infixa e posfixa para cada expressão:
+1) (3 + 4) * (6 - 1) + 5
+2) 8*3 + 2*9 - 4/2
+Desenhe a árvore de cada item (nós internos = operadores; folhas = operandos).
+
+Q5 — (Construção) Parênteses aninhados → árvore (1,0)
+Dada a forma hierárquica (parênteses aninhados):
+(50(30(25(10)(27))(45))(80(60(55))))
+(a) Desenhe a árvore binária correspondente.
+(b) Escreva pré/in/pós.
+(c) Informe o nível de 55 e a altura da árvore.
+
+Q6 — (Código) Contar maiores que K (1,0)
+Implemente int contar_maiores(NoArv *r, int k) que retorna quantos nós têm valor estritamente maior que k. Faça versão recursiva que usa a propriedade de ABB para podar ramos.
+
+Q7 — (Código) Nível, folhas e “até um nível” (1,2)
+(a) Implemente int nivel_de(NoArv *r, int x) (raiz nível 0; -1 se não existir).
+(b) Implemente int folhas(NoArv *r).
+(c) Implemente int contar_ate_nivel(NoArv *r, int L) que conta quantos nós existem do nível 0 até L (inclusive).
+
+Q8 — (Código) Ancestrais/Descendentes/Pai (1,4)
+Implemente:
+1) int descendentes_de(NoArv *r, int x) — retorna quantos descendentes o nó x possui, ou -1 se x não existir.
+2) int pai_de(NoArv *r, int x, int *pai_out) — retorna 1 se achou x e escreve o valor do pai em *pai_out (ou deixa inalterado se não achou); retorna 0 se não achou.
+3) Procedimento que imprime a cadeia de ancestrais de x até a raiz (inclusive) no formato: x <- pai1 <- pai2 <- ... <- raiz.
+Teste em uma árvore onde x tenha pai e avô.
+
+Q9 — (Construção + Código) União e Interseção de ABBs (1,4)
+Dadas duas ABBs A e B (sem duplicatas), crie duas novas árvores:
+• U = união(A,B): contém todos os valores que aparecem em pelo menos uma das duas.
+• I = interseção(A,B): contém apenas os valores que aparecem em ambas.
+Regras: pode usar inserir/buscar/percursos; não copie nós — reconstrua inserindo em novas árvores. 
+Conjuntos para teste:
+A = {20, 10, 30, 5, 14, 25, 40}
+B = {25, 40, 9, 14, 33}
+Mostre pré/in/pós de U e I.
+
+Q10 — (Código) Mínimo, remover menor e remover folhas (1,4)
+(a) Implemente int menor(NoArv *r, int *out) que coloca em *out o menor elemento (retorna 1 se sucesso; 0 se árvore vazia).
+(b) Implemente NoArv* remover_menor(NoArv *r) que remove o menor nó (dica: desce pela esquerda; trate os casos locais).
+(c) Implemente NoArv* remover_folhas(NoArv *r) que remove todas as folhas (se r for folha, retorna NULL).
+Mostre o antes/depois (desenho) para a árvore construída pelas inserções: 30, 14, 41, 8, 18, 45, 38, 43.
+
+
